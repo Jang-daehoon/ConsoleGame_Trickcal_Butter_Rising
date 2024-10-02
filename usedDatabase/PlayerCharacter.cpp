@@ -47,6 +47,11 @@ int PlayerCharacter::GetMana()
 }
 void PlayerCharacter::SetMana()
 {
+	mana += 10;
+	if (mana >= maxMana)
+	{
+		mana = maxMana;
+	}
 }
 int PlayerCharacter::GetMaxMana()
 {
@@ -54,6 +59,11 @@ int PlayerCharacter::GetMaxMana()
 }
 void PlayerCharacter::SetMaxMana()
 {
+}
+
+void PlayerCharacter::UsedMana()
+{
+	mana = 0;
 }
 
 int PlayerCharacter::GetCurCost()
@@ -83,6 +93,11 @@ int PlayerCharacter::GetBattleCost()
 void PlayerCharacter::UsedBattleCost()
 {
 	curBattlecost--;
+}
+
+void PlayerCharacter::UsedSkillCost()
+{
+	curBattlecost = 0;
 }
 
 int PlayerCharacter::getCurBattleCost()
@@ -201,7 +216,7 @@ void PlayerCharacter::attack() const
 	else {
 		// 일반 공격: 물리 피해
 		MoveCursor::getInstance()->GotoXY(0, 48); std::cout << "짱돌을 발사하여 적에게 " << physicalDamage << " 만큼의 물리 피해를 입혔습니다!" << std::endl;
-	}
+	};
 }
 
 //피격

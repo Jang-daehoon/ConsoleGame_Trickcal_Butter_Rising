@@ -37,11 +37,12 @@ public:
 	void SetMana();
 	int GetMaxMana();
 	void SetMaxMana();
-
+	void UsedMana();
 
 	//전투MaxCost
 	int GetBattleCost();
 	void UsedBattleCost();
+	void UsedSkillCost();
 	//실 사용되는 전투 Cost
 	int getCurBattleCost();
 	void InitCurBattleCost();

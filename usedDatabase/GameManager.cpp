@@ -178,7 +178,12 @@ void GameManager::SelectGrowEvent()
     int selectEvent = 0;
     while (myplayer.GetCurCost() > 0)
     {
-        MoveCursor::getInstance()->GotoXY(70, 45); std::cin >> selectEvent;
+        MoveCursor::getInstance()->GotoXY(50, 35); std::cout << "1. 어떤 성장을 하게될까?";
+        MoveCursor::getInstance()->GotoXY(50, 38); std::cout << "2. 누르면 어떻게 될지 궁금하지?!";
+        MoveCursor::getInstance()->GotoXY(50, 41); std::cout << "3. 누르면 백만장자도 될 수 있어?!";
+        MoveCursor::getInstance()->GotoXY(50, 44); std::cout << "4. 상점";
+        
+        MoveCursor::getInstance()->GotoXY(50, 46); std::cout << "행동을 선택해!!: "; std::cin >> selectEvent;
 
         switch (selectEvent)
         {
@@ -267,8 +272,9 @@ void GameManager::BattleInterface()
 void GameManager::BattleSelect()
 {
     int battleSelect;
-    MoveCursor::getInstance()->GotoXY(0, 42); std::cout << "1. 공격(Battle Cost 1 소모";
-    MoveCursor::getInstance()->GotoXY(30, 42); std::cout << "2. 쉴드 획득(BattleCost 1 소모)";
+    MoveCursor::getInstance()->GotoXY(0, 41); std::cout << "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■";
+    MoveCursor::getInstance()->GotoXY(0, 42); std::cout << "1. 공격(Battle Cost 1 소모)■";
+    MoveCursor::getInstance()->GotoXY(30, 42); std::cout << "2. 쉴드 획득(BattleCost 1 소모)  ■";
     MoveCursor::getInstance()->GotoXY(65, 42); std::cout << "3.스킬(BattleCost 5 소모 + MaxMana)";
     MoveCursor::getInstance()->GotoXY(0, 43); std::cout << "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■";
 
@@ -280,6 +286,7 @@ void GameManager::BattleSelect()
     case 1:
         myplayer.attack();
         myplayer.UsedBattleCost();
+        myplayer.SetMana(); //공격 시 마나 5회복
         break;
     case 2:
         std::cout << "쉴드를 획득했습니다." << std::endl;
@@ -290,6 +297,8 @@ void GameManager::BattleSelect()
         if (myplayer.getCurBattleCost() == myplayer.GetBattleCost() && myplayer.GetMana() == myplayer.GetMaxMana())
         {
             std::cout << "버터플라이! 스킬을 사용하였습니다!";
+            myplayer.UsedMana();
+            myplayer.UsedSkillCost();
             Sleep(1000);
         }
         else
