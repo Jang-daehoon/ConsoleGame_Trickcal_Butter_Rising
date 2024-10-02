@@ -244,13 +244,16 @@ void GameManager::BattleInterface()
 {
     system("cls");
     std::cout << "전투화면 출력" << std::endl;
-    myplayer.CharacterBattleInfo();
-    newEnemy.CharacterInfo();
+
     while (true)
     {
-        //전투 선택
+        myplayer.CharacterBattleInfo();
+        newEnemy.CharacterInfo();
+
+        // 전투 선택
         BattleSelect();
-        BattleInterface();
+
+        // 플레이어와 적의 HP 확인
         if (myplayer.getCurHp() <= 0)
         {
             std::cout << "패배! 반성문 써오세요!" << std::endl;
@@ -259,34 +262,49 @@ void GameManager::BattleInterface()
         else if (newEnemy.getCurHp() <= 0)
         {
             std::cout << "승리! 다음 스테이지로 이동합니다!" << std::endl;
-            SetCurGameStage();  //스테이지 증가
-            //성장, 전투 Cost 초기화
+            SetCurGameStage();  // 스테이지 증가
+            // 성장, 전투 Cost 초기화
             myplayer.initCurCost();
             myplayer.InitCurBattleCost();
+            break;  // 전투 루프 종료
         }
     }
 
+    // 전투 종료 후 성장 화면으로 이동
+    if (newEnemy.getCurHp() <= 0) // 적이 사망했을 때만 성장 화면으로 복귀
+    {
+        GrowthInterface(); // 성장 화면으로 복귀
+    }
 }
 
-//전투 행동 선택
+// 전투 행동 선택
 void GameManager::BattleSelect()
 {
     int battleSelect;
-    MoveCursor::getInstance()->GotoXY(0, 41); std::cout << "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■";
-    MoveCursor::getInstance()->GotoXY(0, 42); std::cout << "1. 공격(Battle Cost 1 소모)■";
-    MoveCursor::getInstance()->GotoXY(30, 42); std::cout << "2. 쉴드 획득(BattleCost 1 소모)  ■";
-    MoveCursor::getInstance()->GotoXY(65, 42); std::cout << "3.스킬(BattleCost 5 소모 + MaxMana)";
-    MoveCursor::getInstance()->GotoXY(0, 43); std::cout << "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■";
+    MoveCursor::getInstance()->GotoXY(0, 41);
+    std::cout << "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■";
+    MoveCursor::getInstance()->GotoXY(0, 42);
+    std::cout << "1. 공격(Battle Cost 1 소모)■";
+    MoveCursor::getInstance()->GotoXY(30, 42);
+    std::cout << "2. 쉴드 획득(Battle Cost 1 소모)  ■";
+    MoveCursor::getInstance()->GotoXY(65, 42);
+    std::cout << "3. 스킬(Battle Cost 5 소모 + MaxMana)";
+    MoveCursor::getInstance()->GotoXY(0, 43);
+    std::cout << "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■";
 
-    MoveCursor::getInstance()->GotoXY(0, 47); std::cout << "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■";
-    
-    MoveCursor::getInstance()->GotoXY(0, 45); std::cout << "전투행동 선택: "; std::cin >> battleSelect;
+    MoveCursor::getInstance()->GotoXY(0, 47);
+    std::cout << "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■";
+
+    MoveCursor::getInstance()->GotoXY(0, 45);
+    std::cout << "전투행동 선택: ";
+    std::cin >> battleSelect;
+
     switch (battleSelect)
     {
     case 1:
-        myplayer.attack();
+        myplayer.attack(newEnemy);
         myplayer.UsedBattleCost();
-        myplayer.SetMana(); //공격 시 마나 5회복
+        myplayer.SetMana(); // 공격 시 마나 5회복
         break;
     case 2:
         std::cout << "쉴드를 획득했습니다." << std::endl;
@@ -302,25 +320,30 @@ void GameManager::BattleSelect()
             Sleep(1000);
         }
         else
+        {
             std::cout << "마나 또는 Cost가 부족합니다." << std::endl;
-
+        }
         break;
     default:
         std::cout << "다시 입력하세요" << std::endl;
+        Sleep(1000);
         system("cls");
-        BattleInterface();
-        break;
+        BattleSelect();
+        return; // 여기서 리턴하여 BattleInterface()를 재귀 호출하지 않음
     }
-    //턴이 종료되어 BattleCost 회복
+
+    // 턴이 종료되어 BattleCost 회복
     if (myplayer.getCurBattleCost() == 0)
     {
-        //적의 행동
-        newEnemy.attack();
-        myplayer.InitCurBattleCost(); 
+        // 적의 행동
+        newEnemy.attack(myplayer);
+        myplayer.InitCurBattleCost();
     }
+
     Sleep(1500);
     system("cls");
 }
+
 
 
 

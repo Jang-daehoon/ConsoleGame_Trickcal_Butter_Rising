@@ -19,10 +19,7 @@ int main()
 		//성장 종료 시 전투 스테이지로 이동
 		GameManager::getInstance()->BattleInterface();
 
-		int a;
-		std::cin >> a;
-
-	}
+	};
 
 	std::cout << "보스 디아나 출현!!";
 }

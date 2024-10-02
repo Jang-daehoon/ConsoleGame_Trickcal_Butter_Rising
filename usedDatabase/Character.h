@@ -44,7 +44,7 @@ public:
     void setGold(int gold);
 
     // 가상 함수를 통해 자식 클래스에서 특정 동작을 오버라이딩
-    virtual void attack() const = 0;  // 순수가상함수
+    virtual void attack(Character& target) const = 0; // 순수가상함수로정의  
     virtual void takeDamage(int Damage);
     virtual void CharacterInfo() const = 0;
 };

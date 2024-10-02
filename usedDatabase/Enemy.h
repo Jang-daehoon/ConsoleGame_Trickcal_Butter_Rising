@@ -7,7 +7,7 @@ public:
 	Enemy();
 
 	// Character을(를) 통해 상속됨
-	void attack() const override;
+	void attack(Character& target) const override;
 	void CharacterInfo() const override;
 };
 

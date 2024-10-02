@@ -62,8 +62,7 @@ public:
 	void IncreAllStat(int IncreMaxhp, int IncreDmg, int IncreCriRate, int IncreMaxCost, int IncreMaxExp  );	//올스텟 증가, 현재체력 최대체력으로 초기화
 	
 	//공격, 피격, 캐릭터 정보, 전투시 캐릭터 정보
-	void attack()const override;
-	void takeDamage(int Damage) override;
+	void attack(Character& target)const override;
 	void CharacterInfo() const override;
 	void CharacterBattleInfo();
 
