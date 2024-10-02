@@ -108,5 +108,9 @@ void Character::setGold(int gold) {
 
 void Character::takeDamage(int Damage)
 {
+    curHp -= Damage;
+    if (curHp < 0) {
+        curHp = 0; // 체력이 0 이하가 되지 않도록 설정
+    }
 }
 

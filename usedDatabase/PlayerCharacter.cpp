@@ -191,7 +191,7 @@ void PlayerCharacter::IncreAllStat(int IncreMaxhp, int IncreDmg, int IncreCriRat
 ///강화된 물리 피해 : Damage의 70 % 데미지 
 ///치명타가 터지면 1.5배 데미지를 준다.
 /// </summary>
-void PlayerCharacter::attack() const
+void PlayerCharacter::attack(Character& target) const
 {
 	// 랜덤 시드 설정 (한번만 호출)
 	srand(static_cast<unsigned int>(time(0)));
@@ -207,23 +207,21 @@ void PlayerCharacter::attack() const
 		// 강화 공격: 무조건 치명타로 처리
 		float enhancedDamage = getDamage() * 0.70f * 1.5f;
 		MoveCursor::getInstance()->GotoXY(0, 48); std::cout << "개껌을 발사하여 적에게 " << enhancedDamage << " 만큼의 치명타 피해를 입혔습니다!" << std::endl;
+		target.takeDamage(enhancedDamage); 
 	}
 	else if (critChance < (getCriticalRate() * 100)) {
 		// 치명타: Damage의 70% 데미지 + 1.5배 추가 치명타 피해
 		float criticalDamage = getDamage() * 0.55f * 1.5f;
 		MoveCursor::getInstance()->GotoXY(0, 48); std::cout << "크리티컬 히트를 발휘하여 적에게 " << criticalDamage << " 만큼의 치명타 피해를 입혔습니다!" << std::endl;
+		target.takeDamage(criticalDamage); 
 	}
 	else {
 		// 일반 공격: 물리 피해
 		MoveCursor::getInstance()->GotoXY(0, 48); std::cout << "짱돌을 발사하여 적에게 " << physicalDamage << " 만큼의 물리 피해를 입혔습니다!" << std::endl;
+		target.takeDamage(physicalDamage);
 	};
 }
 
-//피격
-void PlayerCharacter::takeDamage(int Damage)
-{
-
-}
 //캐릭터 정보 출력
 void PlayerCharacter::CharacterInfo() const
 {

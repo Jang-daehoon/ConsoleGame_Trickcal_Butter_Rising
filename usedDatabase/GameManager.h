@@ -3,7 +3,7 @@
 #include <ctime>   // 시간 시드를 설정하기 위한 라이브러리
 #include <windows.h> // Sleep 함수 및 SetConsoleCursorPosition 사용을 위해 필요
 #include <vector>
-#include <random>    // 랜덤 엔진을 사용하기 위한 헤더
+#include <random>  
 #include"MoveCursor.h"
 #include"PlayerCharacter.h"
 #include"Event.h"
