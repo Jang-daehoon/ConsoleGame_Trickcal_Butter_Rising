@@ -789,5 +789,3 @@ void GameManager::SetCurBattleStage()
 // √ ±‚»≠
 GameManager* GameManager::instance = nullptr;
 
-
-//Scene Image
