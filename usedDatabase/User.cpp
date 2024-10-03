@@ -1,4 +1,3 @@
-/*
 #include "User.h"
 
 /// <summary>
@@ -28,4 +27,3 @@ bool User::logIn(std::string& loginId, std::string& password)
 	}
 	return false;
 }
-*/

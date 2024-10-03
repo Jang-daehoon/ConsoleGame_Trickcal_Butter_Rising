@@ -1,4 +1,3 @@
-/*
 #include<mysql.h>
 #include<iostream>
 #pragma comment(lib, "libmysql.lib")	//명시적인 라이브러리의 링크
@@ -22,4 +21,4 @@ public:
 	MYSQL_RES* QueryResult();	//쿼리문 전송 성공 시 결과를 담는 구조체 포인터
 	const char* GetError();	//에러 정보
 };
-*/
+

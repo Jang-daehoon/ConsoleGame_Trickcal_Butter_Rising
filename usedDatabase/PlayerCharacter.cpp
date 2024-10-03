@@ -98,6 +98,7 @@ void PlayerCharacter::UsedBattleCost()
 void PlayerCharacter::UsedSkillCost()
 {
 	curBattlecost = 0;
+
 }
 
 int PlayerCharacter::getCurBattleCost()
@@ -253,3 +254,66 @@ void PlayerCharacter::CharacterBattleInfo()
 	MoveCursor::getInstance()->GotoXY(25, 37); std::cout << "현재 치명타확률: " << criticalRate * 100 << "%" << "\n\n";
 	MoveCursor::getInstance()->GotoXY(25, 39); std::cout << "현재 보유 골드: " << Gold << "\n\n";
 }
+
+void PlayerCharacter::SkillAttack(Character& target)
+{
+	// 랜덤 시드 설정 (한번만 호출)
+	srand(static_cast<unsigned int>(time(0)));
+
+	// 학년에 따른 피해량과 타격 횟수 설정
+	float damagePercent;
+	int hitCount;
+
+	switch (grade)
+	{
+	case 1:
+		damagePercent = 0.90f;
+		hitCount = 1;
+		break;
+	case 2:
+		damagePercent = 0.90f;
+		hitCount = 2;
+		break;
+	case 3:
+		damagePercent = 0.95f;
+		hitCount = 3;
+		break;
+	case 4:
+		damagePercent = 1.10f;
+		hitCount = 4;
+		break;
+	case 5:
+		damagePercent = 1.20f;
+		hitCount = 5;
+		break;
+	case 6:
+		damagePercent = 1.45f;
+		hitCount = 6;
+		break;
+	default:
+		return; // 학년이 잘못된 경우 아무 것도 하지 않음
+	}
+
+	// 각 타격에 대해 피해를 계산하고 적용
+	for (int i = 0; i < hitCount; ++i)
+	{
+		// 치명타 확률 확인
+		int critChance = rand() % 100;
+		float finalDamage = getDamage() * damagePercent;
+
+		if (critChance < (getCriticalRate() * 100))
+		{
+			// 치명타 발생
+			finalDamage *= 1.5f;
+			MoveCursor::getInstance()->GotoXY(0, 48);
+			std::cout << "크리티컬 히트를 발휘하여 적에게 " << finalDamage << " 만큼의 피해를 입혔습니다!" << std::endl;
+		}
+		else
+		{
+			MoveCursor::getInstance()->GotoXY(0, 48);
+			std::cout << "스킬 공격으로 적에게 " << finalDamage << " 만큼의 피해를 입혔습니다!" << std::endl;
+		}
+		target.takeDamage(finalDamage);
+	}
+}
+

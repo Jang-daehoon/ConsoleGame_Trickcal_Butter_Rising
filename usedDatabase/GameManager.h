@@ -34,6 +34,7 @@ public:
 	void GameExit();            // 게임 종료
 	//시작 화면
 	void GameMenuSelect();	//게임 로그인, 회원가입, 종료 값 받기
+	void Prologue();
 
 	//성장 화면
 	void GrowthInterface();
@@ -46,12 +47,10 @@ public:
 	void BattleInterface();
 	void BattleSelect();
 
-
-	//로그인
-	void Login();
-	//회원가입
-	void Register();
-
+	//엔딩
+	void LoseEndingScene();
+	void VictoryEndingScene();
+	void MeetDiana();
 	//getter, setter
 	int GetCurGameStage();
 	int GetLastGameStage();

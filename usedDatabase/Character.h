@@ -39,10 +39,12 @@ public:
     void setCurHp(int hp);
     void setAddShield(int addShield);
     void setCurShield(int shield);
+    void BreakShield(int dmg);
+    void BlockShield(int dmg);
     void setDamage(int damage);
     void setCriticalRate(float rate);
     void setGold(int gold);
-
+    void setUsedGold(int gold);
     // 가상 함수를 통해 자식 클래스에서 특정 동작을 오버라이딩
     virtual void attack(Character& target) const = 0; // 순수가상함수로정의  
     virtual void takeDamage(int Damage);

@@ -92,6 +92,17 @@ void Character::setCurShield(int shield) {
     curShield += shield;
 }
 
+void Character::BreakShield(int dmg)
+{
+    curShield = dmg;
+}
+
+void Character::BlockShield(int dmg)
+{
+    curShield -= dmg;
+    if (curShield < 1)
+        curShield = 0;
+}
 void Character::setDamage(int damage) {
     Damage += damage;
 }
@@ -104,6 +115,16 @@ void Character::setCriticalRate(float rate) {
 void Character::setGold(int gold) {
     if (gold < 0) gold = 0; // 골드도 음수가 되지 않도록 체크
     Gold += gold;
+}
+
+void Character::setUsedGold(int gold)
+{
+    if (Gold < gold)
+    {
+        MoveCursor::getInstance()->GotoXY(50, 43); std::cout << "금액이 부족합니다!";
+    }
+    Gold -= gold;
+    setCurHp(50);
 }
 
 void Character::takeDamage(int Damage)

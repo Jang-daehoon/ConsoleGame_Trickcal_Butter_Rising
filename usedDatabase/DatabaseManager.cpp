@@ -1,4 +1,3 @@
-/*
 #include "DatabaseManager.h"
 
 DatabaseManager::DatabaseManager()
@@ -46,4 +45,3 @@ const char* DatabaseManager::GetError()
 {
 	return mysql_error(&Conn);	//Error
 }
-*/

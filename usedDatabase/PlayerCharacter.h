@@ -65,6 +65,7 @@ public:
 	void attack(Character& target)const override;
 	void CharacterInfo() const override;
 	void CharacterBattleInfo();
+	void SkillAttack(Character& target);
 
 
 };
