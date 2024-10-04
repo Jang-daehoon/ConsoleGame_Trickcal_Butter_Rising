@@ -1,5 +1,5 @@
 <div align="center"><h1># ConsoleGame_Trickcal_Butter_Rising</h1></div>
-<div align="center"><h2>2024-09-31 ~ </h2></div>
+<div align="center"><h2>2024-09-31 ~ 2024-10-03</h2></div>
 <div align="center">Trickcal의 팬게임 느낌으로 공부하며 개발중</div>
 <div align="center"><img src="https://img.shields.io/badge/C++-00599C?style=flat&logo=cplusplus&logoColor=white">을 활용해 개발하던 도중 중단 및 재개발</div>
 <div align="center">중단한 이유: 객체지향 프로그래밍에 있어 상속도 제대로 이루어지지 않았으며,</div>
@@ -14,7 +14,9 @@
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
 <img src="https://img.shields.io/badge/Visual_Studio-5C2D91?style=for-the-badge&logo=visual%20studio&logoColor=white"/>
 </div>
-
+<div align="center">
+ <h3>순서도</h3>
+</div>
  <!--<img src="https://img.shields.io/badge/C++-00599C?style=flat&logo=cplusplus&logoColor=white"/>
 //<img src="https://img.shields.io/badge/github-181717?style=flat&logo=GitHub&logoColor=white"/>
 <img src="https://img.shields.io/badge/mysql-4479A1?style=flat&logo=mysql&logoColor=white"/>-->
