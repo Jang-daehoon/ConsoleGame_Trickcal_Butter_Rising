@@ -17,6 +17,13 @@
 <div align="center">
  <h3>순서도</h3>
 </div>
+<div align="center"> 프로젝트 주제</div>
+<div align="center">프로젝트 환경</div>
+<div align="center">핵심기술</div>
+<div align="center">핵심기술 -> 왜 사용했는가? 사용해서 개선점 사용안하면 어떤 현상이 발생하는가?</div>
+<div align="center">테크 이슈 ->어떻게 해결했는지</div>
+<div align="center">순서도, 참조형태</div>
+
  <!--<img src="https://img.shields.io/badge/C++-00599C?style=flat&logo=cplusplus&logoColor=white"/>
 //<img src="https://img.shields.io/badge/github-181717?style=flat&logo=GitHub&logoColor=white"/>
 <img src="https://img.shields.io/badge/mysql-4479A1?style=flat&logo=mysql&logoColor=white"/>-->
